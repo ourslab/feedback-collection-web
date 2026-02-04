@@ -27,6 +27,9 @@ function userdefined_feedback_affiliation_update(affiliation_text) {
 }
 window.addEventListener("load", function(e=null) {
   userdefined_feedback_division_dom = document.getElementById("userdefined_feedback_division");
+  if (!userdefined_feedback_division_dom) {
+    return true;
+  }
   fetch("https://ourslab.github.io/feedback-collection-web/feedback-collection-form.html")
   .then((data) => data.text())
   .then((text) => userdefined_feedback_division_dom.innerHTML = text)
@@ -71,6 +74,7 @@ window.addEventListener("load", function(e=null) {
     }
     userdefined_feedback_input_affiliation_dom = document.getElementById("userdefined_feedback_input_affiliation");
   });
+  return false;
 });
 <!-- Google tag (gtag.js) -->
 window.dataLayer = window.dataLayer || [];
