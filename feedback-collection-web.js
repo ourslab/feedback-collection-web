@@ -6,7 +6,6 @@ function feedback_collection_submit(e=null) {
   form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
   form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
-  const form_grade = 
   fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
   ).then (
   );
@@ -50,8 +49,16 @@ function feedback_collection_create_select_element(title, name, options=[], opti
 }
 function feedback_collection_create_form_element(page_dom, footer_dom) {
   const form_dom = document.createElement("div");
-  form_dom.style.visibility = "hidden";
   form_dom.style.border = "solid";
+  form_dom.style.display = "flex";
+  form_dom.style.flexBasis = "100%";
+  form_dom.style.flexDirection = "row";
+  form_dom.style.flexGrow = "0";
+  form_dom.style.flexShrink = "0";
+  form_dom.style.flexWrap = "wrap";
+  form_dom.style.gap = "1.5rem";
+  form_dom.style.padding = "16px";
+  form_dom.style.visibility = "hidden";
   form_dom.appendChild(feedback_collection_create_select_element(
     title="あなたの所属", 
     name="g1177", 
@@ -77,8 +84,9 @@ function feedback_collection_create_form_element(page_dom, footer_dom) {
     optional=true
   ));
   const submit_button = document.createElement("input");
-  submit_button.type = "submit";
-  submit_button.value = "回答"
+  submit_button.type = "button";
+  submit_button.value = "回答";
+  submit_button.addEventListener("click", feedback_collection_submit);
   form_dom.appendChild(submit_button);
   page_dom.insertBefore(form_dom, footer_dom);
 }
