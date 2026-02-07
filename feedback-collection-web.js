@@ -7,12 +7,13 @@ function feedback_collection_submit(e=null) {
   form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
   form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
-  [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
-    if (e.getAttribute("required") && !e.value) {
+  const form_data_items = document.querySelectorAll('.feedback-collection-items');
+  for (let a = 0; a < form_data_items.length; a++) {
+    if (form_data_items[a].getAttribute("required") && !form_data_items[a].value) {
       is_valid_data = false;
-      console.log(`Required item: "${e.name}" is empty.`)
+      console.log(`Required item: "${form_data_items[a].name}" is empty.`)
     }
-    form_data.append(e.name, e.value);
+    form_data.append(form_data_items[a].name, form_data_items[a].value);
   });
   if (is_valid_data) {
     fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(e => e.text()).then(t => {
