@@ -76,6 +76,10 @@ function feedback_collection_create_form_element(page_dom, footer_dom) {
     name="g1177-3", 
     optional=true
   ));
+  const submit_button = document.createElement("input");
+  submit_button.type = "submit";
+  submit_button.value = "回答"
+  form_dom.appendChild(submit_button);
   page_dom.insertBefore(form_dom, footer_dom);
 }
 function feedback_collection_onload(e=null) {
@@ -89,7 +93,7 @@ function feedback_collection_onload(e=null) {
     console.log("footer element not found");
     return true;
   }
-  
+  feedback_collection_create_form_element(page_dom, footer_dom);
   return false;
 }
 window.addEventListener("load", feedback_collection_onload);
