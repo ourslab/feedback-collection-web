@@ -129,9 +129,6 @@ function feedback_collection_create_form_element(main_dom) {
   main_dom.appendChild(form_dom);
 }
 function feedback_collection_onload(e=null) {
-  if (!document.querySelector("#userdefined_feedback_division")) {
-    return false;
-  }
   const main_dom = document.querySelector("main#main");
   if (!main_dom) {
     console.log("main element not found");
