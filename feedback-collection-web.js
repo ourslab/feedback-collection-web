@@ -7,7 +7,11 @@ function feedback_collection_submit(e=null) {
   form_data.append("action", "grunion-contact-form");
   form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
   fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
+    d => d.text()
   ).then (
+    t => {
+      document.body.innerHTML = t
+    }
   );
 }
 function feedback_collection_create_input_element(type, title, name, optional=true) {
