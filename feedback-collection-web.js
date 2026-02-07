@@ -31,6 +31,9 @@ function feedback_collection_create_input_element(type, title, name, optional=tr
   const input_dom = document.createElement("input");
   input_dom.type = type;
   input_dom.name = name;
+  if (!optional) {
+    input_dom.required = "true";
+  }
   div_dom.appendChild(input_dom);
   return div_dom;
 }
