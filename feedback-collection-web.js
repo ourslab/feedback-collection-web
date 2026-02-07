@@ -26,7 +26,7 @@ function feedback_collection_create_input_element(type, title, name, optional=tr
   return div_dom;
 }
 function feedback_collection_create_option_element(name) {
-  const option_dom = createElement("option");
+  const option_dom = document.createElement("option");
   option_dom.value = name;
   option_dom.innerHTML = (name)? name : "オプションを1つ選択";
   return option_dom;
