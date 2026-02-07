@@ -77,6 +77,7 @@ function feedback_collection_create_form_element(page_dom, footer_dom) {
   form_dom.style.flexShrink = "0";
   form_dom.style.flexWrap = "wrap";
   form_dom.style.gap = "1.5rem";
+  form_dom.style.maxWidth = "900px";
   form_dom.style.padding = "16px";
   form_dom.style.visibility = "hidden";
   form_dom.appendChild(feedback_collection_create_select_element(
