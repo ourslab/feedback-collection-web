@@ -1,84 +1,101 @@
-let userdefined_feedback_division_dom = null;
-let userdefined_feedback_form_dom = null;
-let userdefined_feedback_input_page_dom = null;
-let userdefined_feedback_star_set = false;
-let userdefined_feedback_stars_dom = [];
-let userdefined_feedback_input_stars_dom = null;
-let userdefined_feedback_affiliations_dom = [];
-let userdefined_feedback_input_affiliation_dom = null;
-function userdefined_feedback_stars_opacity_update(number_of_stars) {
-  for (let a = 0; a <= number_of_stars; a++) {
-    userdefined_feedback_stars_dom[a].style['opacity'] = 1.0;
-  }
-  for (let a = number_of_stars + 1; a < userdefined_feedback_stars_dom.length; a++) {
-    userdefined_feedback_stars_dom[a].style['opacity'] = 0.5;
-  }
+function feedback_collection_submit(e=null) {
+  const form_action = location.href.split("?")[0].split("#")[0];
+  const form_data = new FormData();
+  form_data.append("_wpnonce", "63d3366ae6");
+  form_data.append("_wp_http_referer", `${location.href}`);
+  form_data.append("contact-form-id", "1177");
+  form_data.append("action", "grunion-contact-form");
+  form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
+  const form_grade = 
+  fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
+  ).then (
+  );
 }
-function userdefined_feedback_affiliation_update(affiliation_text) {
-  userdefined_feedback_input_affiliation_dom.value = affiliation_text;
-  if (confirm("送信しますか？")) {
-    let userdefined_feedback_form_data = new FormData();
-    userdefined_feedback_form_data.set(userdefined_feedback_input_page_dom.name, userdefined_feedback_input_page_dom.value);
-    userdefined_feedback_form_data.set(userdefined_feedback_input_stars_dom.name , userdefined_feedback_input_stars_dom.value);
-    userdefined_feedback_form_data.set(userdefined_feedback_input_affiliation_dom.name, userdefined_feedback_input_affiliation_dom.value);
-    fetch(userdefined_feedback_form_dom.action, { method: "POST", body: userdefined_feedback_form_data })
-    alert("送信しました");
-  }
+function feedback_collection_create_input_element(type, title, name, optional=true) {
+  const div_dom = document.createElement("div");
+  const label_dom = document.createElement("label");
+  form_grade_label_dom.innerHTML = title;
+  const form_grade_label_optional = document.createElement("span");
+  form_grade_label_optional.innerHTML = (optional)? "(任意)" : "(必須)";
+  label_dom.appendChild(form_grade_label_optional);
+  div_dom.appendChild(label_dom);
+  const input_dom = document.createElement("input");
+  input_dom.type = type;
+  input_dom.name = name;
+  div_dom.appendChild(input_dom);
+  return div_dom;
 }
-window.addEventListener("load", function(e=null) {
-  userdefined_feedback_division_dom = document.getElementById("userdefined_feedback_division");
-  if (!userdefined_feedback_division_dom) {
+function feedback_collection_create_option_element(name) {
+  const option_dom = createElement("option");
+  option_dom.value = name;
+  option_dom.innerHTML = (name)? name : "オプションを1つ選択";
+  return option_dom;
+}
+function feedback_collection_create_select_element(title, name, options=[], optional=true) {
+  const div_dom = document.createElement("div");
+  const label_dom = document.createElement("label");
+  form_grade_label_dom.innerHTML = title;
+  const form_grade_label_optional = document.createElement("span");
+  form_grade_label_optional.innerHTML = (optional)? "(任意)" : "(必須)";
+  label_dom.appendChild(form_grade_label_optional);
+  div_dom.appendChild(label_dom);
+  const select_dom = document.createElement("select");
+  select_dom.name = name;
+  if (!optional) {
+    select_dom.required = "true";
+  }
+  options.forEach(o => select_dom.appendChild(feedback_collection_create_option_element(o)));
+  div_dom.appendChild(select_dom);
+  return div_dom;
+}
+function feedback_collection_create_form_element(page_dom, footer_dom) {
+  const form_dom = document.createElement("div");
+  form_dom.style.visibility = "hidden";
+  form_dom.style.border = "solid";
+  form_dom.appendChild(feedback_collection_create_select_element(
+    title="あなたの所属", 
+    name="g1177", 
+    options=["", "小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "その他"], 
+    optional=false
+  ));
+  form_dom.appendChild(feedback_collection_create_input_element(
+    type="text",
+    title="名前", 
+    name="g1177-1", 
+    optional=true
+  ));
+  form_dom.appendChild(feedback_collection_create_input_element(
+    type="email",
+    title="メール", 
+    name="g1177-2", 
+    optional=true
+  ));
+  form_dom.appendChild(feedback_collection_create_input_element(
+    type="text",
+    title="メッセージ", 
+    name="g1177-3", 
+    optional=true
+  ));
+  page_dom.insertBefore(form_dom, footer_dom);
+}
+function feedback_collection_onload(e=null) {
+  const page_dom = document.querySelector("div#page");
+  if (!page_dom) {
+    console.log("page element not found");
     return true;
   }
-  fetch("https://ourslab.github.io/feedback-collection-web/feedback-collection-form.html")
-  .then((data) => data.text())
-  .then((text) => userdefined_feedback_division_dom.innerHTML = text)
-  .then(() => {
-    userdefined_feedback_form_dom = document.getElementById("userdefined_feedback_form");
-    userdefined_feedback_input_page_dom = document.getElementById("userdefined_feedback_input_page");
-    userdefined_feedback_input_page_dom.value = document.title;
-    userdefined_feedback_stars_dom = document.getElementsByClassName("userdefined_feedback_stars");
-    userdefined_feedback_input_stars_dom = document.getElementById("userdefined_feedback_input_stars");
-    userdefined_feedback_stars_opacity_update(0);
-    userdefined_feedback_input_stars_dom.value = 1;
-    for (let a = 0; a < userdefined_feedback_stars_dom.length; a++) {
-      userdefined_feedback_stars_dom[a].children[0].addEventListener("mouseover", function(e=null) {
-        if (userdefined_feedback_star_set == false) {
-          userdefined_feedback_stars_opacity_update(a);
-        }
-      });
-      userdefined_feedback_stars_dom[a].children[0].addEventListener("mouseout", function(e=null) {
-        if (userdefined_feedback_star_set == false) {
-          userdefined_feedback_stars_opacity_update(0);
-        }
-      });
-      userdefined_feedback_stars_dom[a].children[0].addEventListener("click", function(e=null) {
-        userdefined_feedback_star_set = true;
-        userdefined_feedback_input_stars_dom.value = a + 1;
-        userdefined_feedback_stars_opacity_update(a);
-      });
-    }
-    userdefined_feedback_affiliations_dom = document.getElementsByClassName("userdefined_feedback_affiliations");
-    for (let a = 0; a < userdefined_feedback_affiliations_dom.length; a++) {
-      userdefined_feedback_affiliations_dom[a].style["width"] = "5em";
-      userdefined_feedback_affiliations_dom[a].style["height"] = "2em";
-      userdefined_feedback_affiliations_dom[a].style["cursor"] = "pointer";
-      userdefined_feedback_affiliations_dom[a].style["text-align"] = "center";
-      userdefined_feedback_affiliations_dom[a].style["color"] = "black";
-      userdefined_feedback_affiliations_dom[a].addEventListener("mouseover", function() {
-        userdefined_feedback_affiliations_dom[a].style["font-weight"] = "bold";
-      });
-      userdefined_feedback_affiliations_dom[a].addEventListener("mouseout", function() {
-        userdefined_feedback_affiliations_dom[a].style["font-weight"] = "initial";
-      });
-    }
-    userdefined_feedback_input_affiliation_dom = document.getElementById("userdefined_feedback_input_affiliation");
-  });
+  const footer_dom = document.querySelector("div#footer");
+  if (!footer_dom) {
+    console.log("footer element not found");
+    return true;
+  }
+  
   return false;
-});
-<!-- Google tag (gtag.js) -->
+}
+window.addEventListener("load", feedback_collection_onload);
+// Google tag (gtag.js)
 window.dataLayer = window.dataLayer || [];
-function gtag(){
+function gtag() {
   dataLayer.push(arguments);
 }
 gtag('js', new Date());
