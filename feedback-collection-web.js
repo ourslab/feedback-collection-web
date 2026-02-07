@@ -14,8 +14,16 @@ function feedback_collection_create_input_element(type, title, name, optional=tr
   const div_dom = document.createElement("div");
   const label_dom = document.createElement("label");
   label_dom.innerHTML = title;
+  label_dom.style.display = "block";
+  label_dom.style.float = "none";
+  label_dom.style.fontWeight = "700";
+  label_dom.style.marginBottom = "0.25em";
   const label_optional_dom = document.createElement("span");
   label_optional_dom.innerHTML = (optional)? "(任意)" : "(必須)";
+  label_optional_dom.style.fontSize = "85%";
+  label_optional_dom.style.fontWeight = "400";
+  label_optional_dom.style.marginLeft = "0.25em";
+  label_optional_dom.style.opasity = "0.6";
   label_dom.appendChild(label_optional_dom);
   div_dom.appendChild(label_dom);
   const input_dom = document.createElement("input");
