@@ -6,6 +6,9 @@ function feedback_collection_submit(e=null) {
   form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
   form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
+  [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
+    form_data.append(e.name, e.value);
+  });
   fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
     d => d.text()
   ).then (
@@ -34,6 +37,7 @@ function feedback_collection_create_input_element(type, title, name, optional=tr
   label_dom.appendChild(label_optional_dom);
   div_dom.appendChild(label_dom);
   const input_dom = document.createElement("input");
+  input_dom.className = "feedback-collection-items";
   input_dom.type = type;
   input_dom.name = name;
   if (!optional) {
@@ -68,6 +72,7 @@ function feedback_collection_create_select_element(title, name, options=[], opti
   label_dom.appendChild(label_optional_dom);
   div_dom.appendChild(label_dom);
   const select_dom = document.createElement("select");
+  select_dom.className = "feedback-collection-items";
   select_dom.name = name;
   if (!optional) {
     select_dom.required = "true";
@@ -88,6 +93,9 @@ function feedback_collection_create_form_element(main_dom) {
   form_dom.style.gap = "1.5rem";
   form_dom.style.padding = "16px";
   form_dom.style.visibility = "hidden";
+  const header_dom = document.createElement("h2");
+  header_dom.innerHTML = "アンケート";
+  form_dom.appendChild(header_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
     title="あなたの所属", 
     name="g1177", 
