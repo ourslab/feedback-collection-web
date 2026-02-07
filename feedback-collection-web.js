@@ -1,20 +1,13 @@
 function feedback_collection_submit(e=null) {
   let is_valid_data = true;
-  const shortlink_dom = document.querySelector("link[rel=\"shortlink\"]");
-  if (!shortlink_dom) {
-    console.log("link[rel=\"shortlink\"] element is not found");
-    return true;
-  }
-  const shortlink_url = shortlink_dom.getAttribute("href");
-  const shortlink_url_parameters = new URLSearchParams(new URL(shortlink_url).search);
-  const page_id = shortlink_url_parameters.get("p");
-  const form_action = location.href.split("?")[0].split("#")[0];
+  const form_action = "https://www.rs.cs.okayama-u.ac.jp/members/users-sekioka/#contact-form-1177";
   const form_data = new FormData();
   form_data.append("_wpnonce", "63d3366ae6");
   form_data.append("_wp_http_referer", `${location.href}`);
-  form_data.append("contact-form-id", `${page_id}`);
+  form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
   form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
+  form_data.append("g1177", `${document.title}`);
   [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
     if (e.getAttribute("required") && !e.value) {
       is_valid_data = false;
@@ -23,9 +16,9 @@ function feedback_collection_submit(e=null) {
     form_data.append(e.name, e.value);
   });
   if (is_valid_data) {
-    fetch(`${form_action}#contact-form-${page_id}`, {method:'POST', body:form_data}).then(e => e.text()).then(t => {
+    fetch(`${form_action}`, {method:'POST', body:form_data}).then(e => e.text()).then(t => {
       alert("回答を送信しました");
-      //location.reload();
+      location.reload();
     });
   }
 }
@@ -95,7 +88,7 @@ function feedback_collection_create_select_element(title, name, options=[], opti
   div_dom.appendChild(select_dom);
   return div_dom;
 }
-function feedback_collection_create_form_element(page_id, main_dom) {
+function feedback_collection_create_form_element(main_dom) {
   const form_dom = document.createElement("div");
   form_dom.style.border = "solid";
   form_dom.style.display = "flex";
@@ -111,26 +104,26 @@ function feedback_collection_create_form_element(page_id, main_dom) {
   form_dom.appendChild(header_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
     title="あなたの所属", 
-    name=`g${page_id}`, 
+    name=`g1177-1`, 
     options=["", "小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "その他"], 
     optional=false
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="text",
     title="名前", 
-    name=`g${page_id}-1`, 
+    name=`g1177-2`, 
     optional=true
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="email",
     title="メール", 
-    name=`g${page_id}-2`, 
+    name=`g1177-3`, 
     optional=true
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="text",
     title="メッセージ", 
-    name=`g${page_id}-3`, 
+    name=`g1177-4`, 
     optional=true
   ));
   const submit_button = document.createElement("input");
@@ -141,20 +134,12 @@ function feedback_collection_create_form_element(page_id, main_dom) {
   main_dom.appendChild(form_dom);
 }
 function feedback_collection_onload(e=null) {
-  const shortlink_dom = document.querySelector("link[rel=\"shortlink\"]");
-  if (!shortlink_dom) {
-    console.log("link[rel=\"shortlink\"] element is not found");
-    return true;
-  }
-  const shortlink_url = shortlink_dom.getAttribute("href");
-  const shortlink_url_parameters = new URLSearchParams(new URL(shortlink_url).search);
-  const page_id = shortlink_url_parameters.get("p");
   const main_dom = document.querySelector("main#main");
   if (!main_dom) {
     console.log("main element is not found");
     return true;
   }
-  feedback_collection_create_form_element(page_id, main_dom);
+  feedback_collection_create_form_element(main_dom);
   return false;
 }
 window.addEventListener("load", feedback_collection_onload);
