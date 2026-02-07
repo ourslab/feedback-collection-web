@@ -15,7 +15,7 @@ function feedback_collection_submit(e=null) {
   });
   if (is_valid_data) {
     fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
-      location.reload();
+      e => location.reload();
     );
   }
 }
