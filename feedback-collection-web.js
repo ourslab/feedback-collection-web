@@ -1,4 +1,5 @@
 function feedback_collection_submit(e=null) {
+  let is_valid_data = true;
   const form_action = location.href.split("?")[0].split("#")[0];
   const form_data = new FormData();
   form_data.append("_wpnonce", "63d3366ae6");
@@ -7,11 +8,16 @@ function feedback_collection_submit(e=null) {
   form_data.append("action", "grunion-contact-form");
   form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
   [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
+    if (e.getAttribute("required") && !e.value) {
+      is_valid_data = false;
+    }
     form_data.append(e.name, e.value);
   });
-  fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
-    location.reload();
-  );
+  if (is_valid_data) {
+    fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
+      location.reload();
+    );
+  }
 }
 function feedback_collection_create_input_element(type, title, name, optional=true) {
   const div_dom = document.createElement("div");
@@ -123,6 +129,9 @@ function feedback_collection_create_form_element(main_dom) {
   main_dom.appendChild(form_dom);
 }
 function feedback_collection_onload(e=null) {
+  if (!document.querySelector("#userdefined_feedback_division")) {
+    return false;
+  }
   const main_dom = document.querySelector("main#main");
   if (!main_dom) {
     console.log("main element not found");
