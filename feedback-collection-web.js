@@ -14,10 +14,10 @@ function feedback_collection_submit(e=null) {
 function feedback_collection_create_input_element(type, title, name, optional=true) {
   const div_dom = document.createElement("div");
   const label_dom = document.createElement("label");
-  form_grade_label_dom.innerHTML = title;
-  const form_grade_label_optional = document.createElement("span");
-  form_grade_label_optional.innerHTML = (optional)? "(任意)" : "(必須)";
-  label_dom.appendChild(form_grade_label_optional);
+  label_dom.innerHTML = title;
+  const label_optional_dom = document.createElement("span");
+  label_optional_dom.innerHTML = (optional)? "(任意)" : "(必須)";
+  label_dom.appendChild(label_optional_dom);
   div_dom.appendChild(label_dom);
   const input_dom = document.createElement("input");
   input_dom.type = type;
