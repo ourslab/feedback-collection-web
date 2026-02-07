@@ -14,9 +14,9 @@ function feedback_collection_submit(e=null) {
     form_data.append(e.name, e.value);
   });
   if (is_valid_data) {
-    fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
-      e => location.reload();
-    );
+    fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(e => e.text()).then(t => {
+      location.reload();
+    });
   }
 }
 function feedback_collection_create_input_element(type, title, name, optional=true) {
