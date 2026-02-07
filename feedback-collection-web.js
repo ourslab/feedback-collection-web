@@ -24,7 +24,8 @@ function feedback_collection_submit(e=null) {
   });
   if (is_valid_data) {
     fetch(`${form_action}#contact-form-${page_id}`, {method:'POST', body:form_data}).then(e => e.text()).then(t => {
-      location.reload();
+      alert("回答を送信しました");
+      //location.reload();
     });
   }
 }
