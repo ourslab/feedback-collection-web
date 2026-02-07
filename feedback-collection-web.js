@@ -14,7 +14,7 @@ function feedback_collection_submit(e=null) {
       console.log(`Required item: "${form_data_items[a].name}" is empty.`)
     }
     form_data.append(form_data_items[a].name, form_data_items[a].value);
-  });
+  }
   if (is_valid_data) {
     fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(e => e.text()).then(t => {
       location.reload();
