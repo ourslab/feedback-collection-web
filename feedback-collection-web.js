@@ -45,7 +45,7 @@ function feedback_collection_create_input_element(type, title, name, optional=tr
   input_dom.type = type;
   input_dom.name = name;
   if (!optional) {
-    input_dom.required = "true";
+    input_dom.setAttribute("required", "true");
   }
   div_dom.appendChild(input_dom);
   return div_dom;
@@ -79,7 +79,7 @@ function feedback_collection_create_select_element(title, name, options=[], opti
   select_dom.className = "feedback-collection-items";
   select_dom.name = name;
   if (!optional) {
-    select_dom.required = "true";
+    select_dom.setAttribute("required", "true");
   }
   options.forEach(o => select_dom.appendChild(feedback_collection_create_option_element(o)));
   div_dom.appendChild(select_dom);
