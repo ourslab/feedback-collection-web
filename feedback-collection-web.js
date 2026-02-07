@@ -6,7 +6,7 @@ function feedback_collection_submit(e=null) {
   form_data.append("_wp_http_referer", `${location.href}`);
   form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
-  form_data.append("contact-form-hash", "182a0ad8b4d8b96de8127cd68e31a117456e2b8b");
+  form_data.append("contact-form-hash", "d496b377fcc52021a255cf41e129d5aeaa079117");
   form_data.append("g1177", `${document.title}`);
   [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
     if (e.getAttribute("required") && !e.value) {
