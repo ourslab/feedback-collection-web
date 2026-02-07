@@ -67,7 +67,7 @@ function feedback_collection_create_select_element(title, name, options=[], opti
   div_dom.appendChild(select_dom);
   return div_dom;
 }
-function feedback_collection_create_form_element(page_dom, footer_dom) {
+function feedback_collection_create_form_element(main_dom) {
   const form_dom = document.createElement("div");
   form_dom.style.border = "solid";
   form_dom.style.display = "flex";
@@ -77,7 +77,6 @@ function feedback_collection_create_form_element(page_dom, footer_dom) {
   form_dom.style.flexShrink = "0";
   form_dom.style.flexWrap = "wrap";
   form_dom.style.gap = "1.5rem";
-  form_dom.style.maxWidth = "900px";
   form_dom.style.padding = "16px";
   form_dom.style.visibility = "hidden";
   form_dom.appendChild(feedback_collection_create_select_element(
@@ -109,20 +108,15 @@ function feedback_collection_create_form_element(page_dom, footer_dom) {
   submit_button.value = "回答";
   submit_button.addEventListener("click", feedback_collection_submit);
   form_dom.appendChild(submit_button);
-  page_dom.insertBefore(form_dom, footer_dom);
+  main_dom.appendChild(form_dom);
 }
 function feedback_collection_onload(e=null) {
-  const page_dom = document.querySelector("div#page");
-  if (!page_dom) {
-    console.log("page element not found");
+  const main_dom = document.querySelector("div#main");
+  if (!main_dom) {
+    console.log("main element not found");
     return true;
   }
-  const footer_dom = document.querySelector("div#footer");
-  if (!footer_dom) {
-    console.log("footer element not found");
-    return true;
-  }
-  feedback_collection_create_form_element(page_dom, footer_dom);
+  feedback_collection_create_form_element(main_dom);
   return false;
 }
 window.addEventListener("load", feedback_collection_onload);
