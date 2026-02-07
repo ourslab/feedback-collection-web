@@ -10,11 +10,7 @@ function feedback_collection_submit(e=null) {
     form_data.append(e.name, e.value);
   });
   fetch(`${form_action}#contact-form-1177`, {method:'POST', body:form_data}).then(
-    d => d.text()
-  ).then (
-    t => {
-      document.body.innerHTML = t
-    }
+    location.reload();
   );
 }
 function feedback_collection_create_input_element(type, title, name, optional=true) {
