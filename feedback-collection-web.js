@@ -34,10 +34,10 @@ function feedback_collection_create_option_element(name) {
 function feedback_collection_create_select_element(title, name, options=[], optional=true) {
   const div_dom = document.createElement("div");
   const label_dom = document.createElement("label");
-  form_grade_label_dom.innerHTML = title;
-  const form_grade_label_optional = document.createElement("span");
-  form_grade_label_optional.innerHTML = (optional)? "(任意)" : "(必須)";
-  label_dom.appendChild(form_grade_label_optional);
+  label_dom.innerHTML = title;
+  const label_optional_dom = document.createElement("span");
+  label_optional_dom.innerHTML = (optional)? "(任意)" : "(必須)";
+  label_dom.appendChild(label_optional_dom);
   div_dom.appendChild(label_dom);
   const select_dom = document.createElement("select");
   select_dom.name = name;
