@@ -111,7 +111,7 @@ function feedback_collection_create_form_element(main_dom) {
   main_dom.appendChild(form_dom);
 }
 function feedback_collection_onload(e=null) {
-  const main_dom = document.querySelector("div#main");
+  const main_dom = document.querySelector("main#main");
   if (!main_dom) {
     console.log("main element not found");
     return true;
