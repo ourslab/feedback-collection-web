@@ -10,6 +10,7 @@ function feedback_collection_submit(e=null) {
   [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
     if (e.getAttribute("required") && !e.value) {
       is_valid_data = false;
+      console.log(`Required item: "${e.name}" is empty.`)
     }
     form_data.append(e.name, e.value);
   });
