@@ -111,7 +111,7 @@ function feedback_collection_create_form_element(main_dom) {
   form_dom.appendChild(feedback_collection_create_select_element(
     title="現在のご身分", 
     name=`g1177-2`, 
-    options=["小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "その他"], 
+    options=["小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "企業の人事部", "就活支援サービス", "その他"], 
     optional=false
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
