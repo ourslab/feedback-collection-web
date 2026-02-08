@@ -103,26 +103,26 @@ function feedback_collection_create_form_element(main_dom) {
   header_dom.innerHTML = "アンケート";
   form_dom.appendChild(header_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
-    title="ページ評価", 
+    title="このページへの評価", 
     name=`g1177-1`, 
-    options=["", "★★★★★", "★★★★", "★★★", "★★", "★"], 
+    options=["★★★★★", "★★★★", "★★★", "★★", "★"], 
     optional=false
   ));
   form_dom.appendChild(feedback_collection_create_select_element(
-    title="あなたの所属", 
+    title="現在のご身分", 
     name=`g1177-2`, 
-    options=["", "小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "その他"], 
+    options=["小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "その他"], 
     optional=false
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="text",
-    title="名前", 
+    title="お名前", 
     name=`g1177-3`, 
     optional=true
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="email",
-    title="メール", 
+    title="メールアドレス", 
     name=`g1177-4`, 
     optional=true
   ));
