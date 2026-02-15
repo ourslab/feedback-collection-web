@@ -2,7 +2,7 @@ function feedback_collection_submit(e=null) {
   let is_valid_data = true;
   const form_action = "https://www.rs.cs.okayama-u.ac.jp/members/users-sekioka/#contact-form-1177";
   const form_data = new FormData();
-  form_data.append("_wpnonce", "848c697b19");
+  form_data.append("_wpnonce", "e076b16aa1");
   form_data.append("_wp_http_referer", `${location.href}`);
   form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
@@ -114,22 +114,28 @@ function feedback_collection_create_form_element(main_dom) {
     options=["小学生", "中学生", "高校生", "高専生", "大学生", "大学院生", "保護者", "企業の人事部", "就活支援サービス", "その他"], 
     optional=false
   ));
+  form_dom.appendChild(feedback_collection_create_select_element(
+    title="性別", 
+    name=`g1177-3`, 
+    options=["回答しない", "女子", "男子"], 
+    optional=true
+  ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="text",
     title="お名前", 
-    name=`g1177-3`, 
+    name=`g1177-4`, 
     optional=true
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="email",
     title="メールアドレス", 
-    name=`g1177-4`, 
+    name=`g1177-5`, 
     optional=true
   ));
   form_dom.appendChild(feedback_collection_create_input_element(
     type="text",
     title="メッセージ", 
-    name=`g1177-5`, 
+    name=`g1177-6`, 
     optional=true
   ));
   const submit_button = document.createElement("input");
