@@ -100,7 +100,7 @@ function feedback_collection_create_form_element(main_dom) {
   form_dom.style.gap = "1.5rem";
   form_dom.style.padding = "16px";
   const header_dom = document.createElement("h2");
-  header_dom.innerHTML = "アンケート";
+  header_dom.innerHTML = "フィードバック・質問等";
   form_dom.appendChild(header_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
     title="このページへの評価", 
