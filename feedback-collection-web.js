@@ -99,9 +99,13 @@ function feedback_collection_create_form_element(main_dom) {
   form_dom.style.flexWrap = "wrap";
   form_dom.style.gap = "1.5rem";
   form_dom.style.padding = "16px";
-  const header_dom = document.createElement("h2");
-  header_dom.innerHTML = "フィードバック・質問等";
-  form_dom.appendChild(header_dom);
+  const title_dom = document.createElement("h2");
+  title_dom.innerHTML = "フィードバックや質問など，お気軽にどうぞ（このページのこと以外でもOK！）";
+  form_dom.appendChild(title_dom);
+  const subtitle_dom = document.createElement("h2");
+  subtitle_dom.style.fontSize = "1.125rem";
+  subtitle_dom.innerHTML = "※すべてのご連絡に返信をお約束できるわけではありませんが，すべて大切に拝読します";
+  form_dom.appendChild(subtitle_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
     title="このページへの評価", 
     name=`g1177-1`, 
