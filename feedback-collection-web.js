@@ -4,7 +4,7 @@ function feedback_collection_submit(e=null) {
   const form_data = new FormData();
   form_data.append("contact-form-id", "1177");
   form_data.append("action", "grunion-contact-form");
-  form_data.append("contact-form-hash", "ffd0cb59f7cfe4aff66c02133cb07c75091ffdcc");
+  form_data.append("contact-form-hash", "a56fa528dcf4a9140db933883cc781eb902131e5");
   form_data.append("g1177", `${document.title}`);
   [].slice.call(document.querySelectorAll('.feedback-collection-items')).forEach(e => {
     if (e.getAttribute("required") && !e.value) {
