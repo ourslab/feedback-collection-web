@@ -100,11 +100,10 @@ function feedback_collection_create_form_element(main_dom) {
   form_dom.style.gap = "1.5rem";
   form_dom.style.padding = "16px";
   const title_dom = document.createElement("h2");
-  title_dom.innerHTML = "フィードバックや質問など，お気軽にどうぞ（このページのこと以外でもOK！）";
+  title_dom.innerHTML = "フィードバックや質問など，お気軽にどうぞ";
   form_dom.appendChild(title_dom);
   const subtitle_dom = document.createElement("h2");
-  subtitle_dom.style.fontSize = "1.125rem";
-  subtitle_dom.innerHTML = "※すべてのご連絡に返信をお約束できるわけではありませんが，すべて大切に拝読します";
+  subtitle_dom.innerHTML = "（このページのこと以外でもOK！）";
   form_dom.appendChild(subtitle_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
     title="このページへの評価", 
@@ -147,6 +146,10 @@ function feedback_collection_create_form_element(main_dom) {
   submit_button.value = "回答";
   submit_button.addEventListener("click", feedback_collection_submit);
   form_dom.appendChild(submit_button);
+  const footer_dom = document.createElement("h2");
+  footer_dom.style.fontSize = "1.125rem";
+  footer_dom.innerHTML = "※すべてのご連絡に返信をお約束できるわけではありませんが，すべて大切に拝読します";
+  form_dom.appendChild(footer_dom);
   main_dom.appendChild(form_dom);
 }
 function feedback_collection_onload(e=null) {
