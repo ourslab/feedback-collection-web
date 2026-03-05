@@ -100,11 +100,10 @@ function feedback_collection_create_form_element(main_dom) {
   form_dom.style.gap = "1.5rem";
   form_dom.style.padding = "16px";
   const title_dom = document.createElement("h2");
-  title_dom.innerHTML = "フィードバックや質問など，お気軽にどうぞ";
+  title_dom.style.margin = "auto";
+  title_dom.style.textAlign = "center";
+  title_dom.innerHTML = "フィードバックや質問など，お気軽にどうぞ<br>（このページのこと以外でもOK！）";
   form_dom.appendChild(title_dom);
-  const subtitle_dom = document.createElement("h2");
-  subtitle_dom.innerHTML = "（このページのこと以外でもOK！）";
-  form_dom.appendChild(subtitle_dom);
   form_dom.appendChild(feedback_collection_create_select_element(
     title="このページへの評価", 
     name=`g1177-1`, 
